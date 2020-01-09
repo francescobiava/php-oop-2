@@ -1,11 +1,5 @@
 <?php
 
-// GOAL: 
-// - Definire la classe Ospite (che eredita da Persona) caratterizzata da nome, cognome e anno di nascita
-// - Definire la classe Pagante (che eredita da Persona) caratterizzata da nome, cognome e indirizzo (di residenza)
-// - Per ogni classe definire costruttore e toString in maniera appropriata, eventualmente richiamando i metodi della classe padre
-// - Eseguire dei test, istanziando ogni classe definita e testando la correttezza dei risultati attesi
-
 class Person {
 
   public $name;
@@ -33,7 +27,21 @@ class Guest extends Person {
   }
 
   function __toString() {
-    return parent::__toString() . 'Data di nascita: ' . $this->dateBirth . '<br>';
+    return parent::__toString() . 'Anno di nascita: ' . $this->dateBirth . '<br>';
+  }
+}
+
+class Customer extends Person {
+
+  public $address;
+
+  function __construct($name, $lastname, $address) {
+    parent::__construct($name, $lastname);
+    $this->address = $address;
+  }
+
+  function __toString() {
+    return parent::__toString() . 'Indirizzo: ' . $this->address . '<br>';
   }
 }
 
@@ -43,10 +51,15 @@ echo 'PERSONE <br>';
 echo $person1 . '<br>';
 echo $person2 . '<br>';
 
-$guest1 = new Guest('Francesco', 'Biava', '27/11/1995');
-$guest2 = new Guest('Fiorenza', 'Suagher', '27/06/1992');
+$guest1 = new Guest('Francesco', 'Biava', '1995');
+$guest2 = new Guest('Fiorenza', 'Suagher', '1992');
 echo 'OSPITI <br>';
 echo $guest1 . '<br>';
 echo $guest2 . '<br>';
 
+$customer1 = new Customer('Francesco', 'Biava', 'via Test 10');
+$customer2 = new Customer('Fiorenza', 'Suagher', 'via Test 8');
+echo 'PAGANTI <br>';
+echo $customer1 . '<br>';
+echo $customer2 . '<br>';
 ?>
