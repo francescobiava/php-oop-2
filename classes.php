@@ -18,15 +18,35 @@ class Person {
 
   function __toString() {
     return 'Nome: ' . $this->name . '<br>'
-           . 'Cognome: ' . $this->lastname . '<br><br>';
+           . 'Cognome: ' . $this->lastname . '<br>';
   }
 
 }
 
+class Guest extends Person {
+
+  public $dateBirth;
+
+  function __construct($name, $lastname, $dateBirth) {
+    parent::__construct($name, $lastname);
+    $this->dateBirth = $dateBirth;
+  }
+
+  function __toString() {
+    return parent::__toString() . 'Data di nascita: ' . $this->dateBirth . '<br>';
+  }
+}
+
 $person1 = new Person('Francesco', 'Biava');
 $person2 = new Person('Fiorenza', 'Suagher');
+echo 'PERSONE <br>';
+echo $person1 . '<br>';
+echo $person2 . '<br>';
 
-echo $person1;
-echo $person2;
+$guest1 = new Guest('Francesco', 'Biava', '27/11/1995');
+$guest2 = new Guest('Fiorenza', 'Suagher', '27/06/1992');
+echo 'OSPITI <br>';
+echo $guest1 . '<br>';
+echo $guest2 . '<br>';
 
 ?>
